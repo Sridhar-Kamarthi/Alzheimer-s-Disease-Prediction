@@ -1,0 +1,71 @@
+{% load static %}
+<html>
+<head>
+<title>Early Detection of Alzheimer's Disease</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+ <script LANGUAGE="Javascript" >
+ 
+function validate(){
+	var x=document.forms["f1"]["t1"].value;
+	
+	if(x == null || x==""){
+		window.alert("File must be upload");
+		document.f1.t1.focus();
+		return false;
+	}
+	
+	return true;
+}
+		
+	
+	</script>
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<center><font size="4" color="white">Early Detection of Alzheimer's Disease Using Cognitive Features A Voting-Based Ensemble Machine Learning Approach</font></center></font>
+		</div>
+		<div id="slogan">
+			
+		</div>
+	</div>
+	<div id="menu">
+		<ul><center>
+		<li><a href="{% url 'LoadDataset' %}"><font size="4" color="black">Load Alzheimer Dataset</font></a></font></li>
+	  <li><a href="{% url 'FeaturesExtraction' %}"><font size="4" color="black">Cognitive Features</font></a></font></li>
+	   <li><a href="{% url 'RunML' %}"><font size="4" color="black">Run Voting-Based Ensemble ML</font></a></font></li>
+	   <li><a href="{% url 'Predict' %}"><font size="4" color="black">Predict Disease</font></a></font></li>
+	    <li><a href="{% url 'index' %}"><font size="4" color="black">Logout</font></a></font></li>		
+		</center></ul>
+<br class="clearfix" />
+				</div>
+			
+	<div id="splash">
+		<img class="pic" src="{% static 'images/investor.jpg' %}" width="870" height="230" alt="" />
+	</div>	
+			<center>
+<form name="f1" method="post" action={% url 'PredictAction' %}  enctype="multipart/form-data" OnSubmit="return validate()">
+	{% csrf_token %}<br/>
+   <h3><b>Upload Test Data for Alzheimer Prediction</b></h3>
+   
+	<font size="" color="black"><center>{{ data|safe }}</center></font>
+						
+						<table align="center" width="80" >
+			 {{ data1|safe }}
+         
+		  
+		<tr><td><font size="" color="black">Upload&nbsp;Test&nbsp;Data</b></td><td><input type="file" name="t1" style="font-family: Comic Sans MS" size="15"/></td></tr>
+
+		 
+			<tr><td></td><td><input type="submit" value="Submit">
+			</td>
+			</table>
+			<br/><br/><br/><br/>
+				</div>	
+					
+				</div>
+				
+	</body>
+</html>
